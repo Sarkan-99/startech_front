@@ -1,21 +1,28 @@
-@tailwind base;
+@import 'primereact/resources/themes/lara-light-blue/theme.css';
+
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer reset,primereact;
+@layer reset {
+    html {
+        font-size: 14px;
+    }
+    
+    body {
+        font-family: var(--font-family);
+        font-weight: normal;
+        background: var(--surface-ground);
+        color: var(--text-color);
+        padding: 1rem;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .card {
+        background: var(--surface-card);
+        padding: 2rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
 }
