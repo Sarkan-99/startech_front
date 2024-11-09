@@ -1,32 +1,15 @@
-"use client";
-
-import { useRouter } from 'next/navigation';
+import React from 'react'
 import { Button } from 'primereact/button';
-import { axiosDB } from './api/axios';
+import Link from 'next/link';
 
-export default function StartButton() {
-  const router = useRouter();
-
-  const handleStart = async () => {
-    try {
-      console.log("hello before start");
-      
-      const response = await axiosDB.post('/auth/google/'); 
-
-      const googleAccessToken = response.data.access_token;
-      console.log("tokkens : ",googleAccessToken);
-      
-      localStorage.setItem('google_access_token', googleAccessToken);
-
-      router.push('/home');
-    } catch (error) {
-      console.error('Google authentication failed:', error);
-    }
-  };
-
+const page = () => {
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <Button label="Start" onClick={handleStart} />
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
+      <Link href='http://127.0.0.1:8000/auth/google'>
+        <Button label='Start'/>
+      </Link>
     </div>
-  );
+  )
 }
+
+export default page
