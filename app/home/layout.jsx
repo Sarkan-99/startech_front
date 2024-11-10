@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Card } from 'primereact/card'
