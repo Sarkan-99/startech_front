@@ -34,7 +34,7 @@ export default function Header() {
 
     return (
         <div className="card dock-demo m-0 p-0">
-            <Tooltip className="dark-tooltip" target=".dock-advanced .p-dock-action" my="center+15 bottom-15" at="center top" showDelay={150} />
+            <Tooltip className="dark-tooltip" target=".dock-advanced .p-dock-action" my="center+15 bottom-15" at="center top" />
             <Menubar start={start} end={end} className="bg-indigo-50" />
         </div>
     );

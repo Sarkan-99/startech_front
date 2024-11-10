@@ -25,7 +25,14 @@ const Page = () => {
     const dashboardData = [
         { id: 1, name: 'John Doe', country: { name: 'USA' }, representative: { name: 'Amy Elsner' }, status: 'qualified' },
         { id: 2, name: 'Jane Smith', country: { name: 'Germany' }, representative: { name: 'Elwin Sharvill' }, status: 'new' },
-        { id: 3, name: 'Alex Johnson', country: { name: 'Brazil' }, representative: { name: 'Asiya Javayant' }, status: 'renewal' }
+        { id: 3, name: 'Alex Johnson', country: { name: 'Brazil' }, representative: { name: 'Asiya Javayant' }, status: 'renewal' },
+        { id: 4, name: 'Alex Johnson', country: { name: 'Brazil' }, representative: { name: 'Asiya Javayant' }, status: 'renewal' },
+        { id: 5, name: 'Alex Johnson', country: { name: 'Brazil' }, representative: { name: 'Asiya Javayant' }, status: 'renewal' },
+        { id: 6, name: 'Alex Johnson', country: { name: 'Brazil' }, representative: { name: 'Asiya Javayant' }, status: 'renewal' },
+        { id: 7, name: 'Alex Johnson', country: { name: 'Brazil' }, representative: { name: 'Asiya Javayant' }, status: 'renewal' },
+        { id: 8, name: 'Alex Johnson', country: { name: 'Brazil' }, representative: { name: 'Asiya Javayant' }, status: 'renewal' },
+
+    
     ];
 
     const transactionData = [
@@ -73,11 +80,11 @@ const Page = () => {
 
     return (
         <div className='card'>
-            <div className="card flex justify-center mt-10">
+            <div className="card flex justify-center">
                 <TabMenu model={items} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)} />
             </div>
 
-            <div className="card mt-5">
+            <div className="card">
                 <DataTable value={customers} paginator rows={5} filters={filters} onFilter={(e) => setFilters(e.filters)}
                     selection={selectedCustomer} onSelectionChange={(e) => setSelectedCustomer(e.value)} selectionMode="single" dataKey="id"
                     emptyMessage="No customers found." tableStyle={{ minWidth: '50rem' }}>
