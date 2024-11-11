@@ -7,12 +7,15 @@ import { Button } from 'primereact/button';
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { axiosDB } from '../api/axios';
 import { useRouter } from 'next/navigation';
+import { Image } from 'primereact/image';
+
 
 
 const mainpage = ({children}) => {
 
   const op = useRef(null);
   const router = useRouter();
+
 
   
   async function logOut() {
@@ -29,7 +32,7 @@ const mainpage = ({children}) => {
   return (
     <div className='relative bg-zinc-50 h-screen p-0 m-0'>
       <div className='absolute flex flex-row w-full bg-blue-500 p-2'>
-        <i className="pi pi-apple p-5">LOGO</i>
+      <Image src="Logo.png" alt="Logo Image" width="110" className='m-2 ml-5' />
         <div className="absolute flex justify-center p-1 right-3" >
             <Button className='my-custom-button' icon="pi pi-user" rounded  aria-label="User" onClick={(e) => op.current.toggle(e)} />
             <OverlayPanel ref={op}>

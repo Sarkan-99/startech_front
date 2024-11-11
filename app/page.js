@@ -8,7 +8,7 @@ const page = () => {
   return (
     <div className="flex justify-center items-center h-screen">
      <Card className='w-auto h-auto'>
-         <div className='flex flex-row flex justify-center items-center h-auto'>
+         <div className='flex flex-row justify-center items-center h-auto'>
          <span className="m-4">Login</span>
          <Divider layout="vertical"/>
          <div className="text-center grid">
