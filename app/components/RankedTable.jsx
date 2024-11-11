@@ -5,7 +5,7 @@ import { Button } from 'primereact/button';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-const CustomTable = ({ data }) => {
+const RankedTable = ({ data }) => {
   const router = useRouter();
   const [filters, setFilters] = useState({});
   const [selectedCustomer, setSelectedCustomer] = useState(null);
@@ -22,6 +22,10 @@ const CustomTable = ({ data }) => {
     return <span>{rowData.projet_porteur}</span>;
   };
 
+  const projectIdTemplate = (rowData, { rowIndex }) => {
+    return <span>{rowIndex + 1}</span>;
+  };
+  
   return (
     <DataTable
       value={data}
@@ -36,6 +40,8 @@ const CustomTable = ({ data }) => {
       emptyMessage="No projects found."
       tableStyle={{ minWidth: '50rem' }}>
       
+      <Column field="classement" header="Classement" body={projectIdTemplate}/>
+
       <Column field="name" header="Project Name" body={projectNameBodyTemplate} style={{ width: '25%' }} />
 
       <Column header="Country" body={countryBodyTemplate} style={{ width: '25%' }} />
@@ -44,8 +50,8 @@ const CustomTable = ({ data }) => {
       <Column
         header="Action"
         body={(rowData) => (
-          <Link href={{ pathname: '/home/show', query: { project_id: JSON.stringify(rowData.id) } }}>
-            <Button label="Noté" className="h-8" />
+          <Link href={{ pathname: '/admin-home/admin-show', query: { project_id: JSON.stringify(rowData.id) } }}>
+            <Button label="Show" className="h-8" />
           </Link>
         )}
       />
@@ -53,4 +59,4 @@ const CustomTable = ({ data }) => {
   );
 };
 
-export default CustomTable;
+export default RankedTable;

@@ -1,7 +1,5 @@
-"use client";
 
 export const Info = ({ projet }) => {
-  console.log('projet from info : ',projet);
   
   return (
     <div className="mt-10  flex justify-center " >

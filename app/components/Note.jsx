@@ -4,17 +4,17 @@ import { InputNumber } from 'primereact/inputnumber';
 import { InputTextarea } from "primereact/inputtextarea";
 import { FloatLabel } from "primereact/floatlabel";
 
-export const Note = ({ onValuesChange, projet }) => {
-    const [value1, setValue1] = useState(null);
-    const [value2, setValue2] = useState(null);
-    const [value3, setValue3] = useState(null);
-    const [value4, setValue4] = useState(null);
-    const [value5, setValue5] = useState(null);
-    const [value6, setValue6] = useState('');
+export const Note = ({ onValuesChange, notes }) => {
+    const [value1, setValue1] = useState(notes.qualite_note);
+    const [value2, setValue2] = useState(notes.inovation_note);
+    const [value3, setValue3] = useState(notes.pertinence_note);
+    const [value4, setValue4] = useState(notes.effort_note);
+    const [value5, setValue5] = useState(notes.env_note);
+    const [value6, setValue6] = useState(notes.comentaire);
 
     useEffect(() => {
-        onValuesChange([value1, value2, value3, value4, value5]);
-    }, [value1, value2, value3, value4, value5, onValuesChange]);
+        onValuesChange([value1, value2, value3, value4, value5, value6]);
+    }, [value1, value2, value3, value4, value5,value6, onValuesChange]);
 
 
   return (
