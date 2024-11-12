@@ -6,10 +6,11 @@ import { Info } from '../../components/Info';
 import { PdfViewer } from '../../components/PdfViewer';
 import { Note } from '../../components/Note';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { axiosDB } from '../../api/axios';
 
 export default function Test() {
+    const router = useRouter();
     const searchParams = useSearchParams();
     const [activeIndex, setActiveIndex] = useState(0);
     const [project, setProject] = useState({});
@@ -51,7 +52,6 @@ export default function Test() {
         const fetchPdf = async () => {
             try {
                 const response3 = await axiosDB.get(`/get_project_pdf/${project_id}`);
-                console.log('response 3 : ', response3.data);
                 setPdf(response3.data.url);
             } catch (error) {
                 console.error('Error fetching PDF : ', error);
@@ -138,6 +138,7 @@ export default function Test() {
             })
 
             console.log(response);
+            router.push('/home');
         } catch (error){
             console.error('Error validating notes:',error);
         }
