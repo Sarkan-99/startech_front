@@ -4,6 +4,7 @@ import { Steps } from 'primereact/steps';
 import { Button } from 'primereact/button';
 import { Info } from '../../components/Info';
 import { PdfViewer } from '../../components/PdfViewer';
+import { MyVideo } from '../../components/MyVideo';
 import { Note } from '../../components/Note';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -118,9 +119,14 @@ export default function Test() {
             template: (item) => itemRenderer(item, 1)
         },
         {
-            icon: 'pi pi-check',
-            label: 'Evaluation',
+            icon: 'pi pi-clipboard',
+            label: 'Video',
             template: (item) => itemRenderer(item, 2)
+        },
+        {
+            icon: 'pi pi-check',
+            label: 'Evaluer',
+            template: (item) => itemRenderer(item, 3)
         }
     ];
 
@@ -145,12 +151,14 @@ export default function Test() {
     }
     
     return (
-        <div className="card max-h-screen h-[60rem] relative">
+        <div className="card max-h-screen h-[50rem] relative">
             <Steps model={items} activeIndex={activeIndex} readOnly={false} className="m-2 pt-4" />
             {activeIndex === 0 ? (
                 <Info projet={project} />
             ) : activeIndex === 1 ? (
                 <PdfViewer src={pdf} />
+            ) : activeIndex === 2 ? (
+                <MyVideo />
             ) : (
                 <Note notes={notes} onValuesChange={handleValuesChange} />
             )}

@@ -26,7 +26,7 @@ const CustomTable = ({ data }) => {
     <DataTable
       value={data}
       paginator
-      rows={5}
+      rows={4}
       filters={filters}
       onFilter={(e) => setFilters(e.filters)}
       selection={selectedCustomer}
@@ -34,7 +34,7 @@ const CustomTable = ({ data }) => {
       selectionMode="single"
       dataKey="id"
       emptyMessage="No projects found."
-      tableStyle={{ minWidth: '50rem' }}>
+      tableStyle={{ height: '3rem' }}>
       
       <Column field="name" header="Project Name" body={projectNameBodyTemplate} style={{ width: '25%' }} />
 
