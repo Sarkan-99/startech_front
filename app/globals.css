@@ -91,6 +91,22 @@ th {
 
 }
 
+.card {
+  padding: 0rem;
+  margin-bottom: 0rem;
+}
+
+.p-card .p-card-body{
+  height: 100%;
+}
+
+.p-datatable {
+  height:100%;
+}
+
+.p-card-content {
+  height: 100%;
+}
 
 }
 @layer primereact {
