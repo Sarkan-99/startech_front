@@ -19,7 +19,7 @@ export const Note = ({ onValuesChange, notes }) => {
 
   return (
     <div className="mt-10  flex justify-center " >
-      <div className="card shadow-md w-10/12">
+      <div className=" shadow-md w-10/12">
       <table className="table">
       <tbody>
         

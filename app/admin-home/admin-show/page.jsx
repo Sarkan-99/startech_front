@@ -1,63 +1,85 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { DataTable } from 'primereact/datatable'
+import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import React, { useEffect, useState } from 'react'
+import { Button } from 'primereact/button';
+import { Dialog } from 'primereact/dialog';
+import React, { useEffect, useState, useRef } from 'react';
 import { axiosDB } from '../../api/axios';
 
-const page = () => {
+const Page = () => {
     const searchParams = useSearchParams();
-
     const [notes, setNotes] = useState([]);
+    const [visible, setVisible] = useState(false);
     const [selectedProf, setSelectedProf] = useState(null);
+    const [selectedComment, setSelectedComment] = useState("");
     const project_id = searchParams.get('project_id');
-    
-    console.log(project_id)
-    useEffect(() =>{
+    const dataTableRef = useRef(null);
+
+    useEffect(() => {
         const fetchNotes = async () => {
-           try {
-            const response = await axiosDB.post('/notes/projet', {
-                    id_projet: project_id
-            });
-            const notesData = response.data.notes;
-            setNotes(response.data.notes)
+            try {
+                const response = await axiosDB.post('/notes/projet', { id_projet: project_id });
+                const notesData = response.data.notes;
+
                 if (notesData && typeof notesData === 'object') {
                     setNotes(Object.values(notesData));
                 } else {
-                    // setNotes(notesData || []);
+                    setNotes(notesData || []);
                 }
 
                 console.log('Fetched notes:', notesData);
-            
-           } catch (error) {
-            console.error('Error fetching notes : ', error);
-           }
+            } catch (error) {
+                console.error('Error fetching notes:', error);
+            }
         };
 
-        if(project_id) fetchNotes();
-    },[project_id])
+        if (project_id) fetchNotes();
+    }, [project_id]);
+
+    const openDialog = (comment) => {
+        setSelectedComment(comment);
+        setVisible(true);
+    };
+
+    const closeDialog = () => {
+        setVisible(false);
+    };
 
     return (
-      <div>
-          <DataTable
-            value={notes}
-            paginator
-            rows={5}
-            selection={selectedProf}
-            onSelectionChange={(e) => setSelectedProf(e.value)}
-            selectionMode='single'
+        <div>
+            <DataTable
+                ref={dataTableRef}
+                value={notes}
+                paginator
+                rows={5}
+                selection={selectedProf}
+                onSelectionChange={(e) => setSelectedProf(e.value)}
+                selectionMode="single"
             >
-            <Column field="code" header="Prof"></Column>
-            <Column field="name" header="Qualité"></Column>
-            <Column field="category" header="Effort"></Column>
-            <Column field="quantity" header="Innovation"></Column>
-            <Column field="quantity" header="Enviroment"></Column>
-            <Column field="quantity" header="Total"></Column>
-            <Column field="quantity" header="Commentair"></Column>
-          </DataTable>
-      </div>
-    )
-}
+                <Column field="code" header="Prof" />
+                <Column field="qualite_note" header="Qualité" body={(rowData) => <span>{rowData.qualite_note}</span>} />
+                <Column field="effort_note" header="Effort" body={(rowData) => <span>{rowData.effort_note}</span>} />
+                <Column field="inovation_note" header="Innovation" body={(rowData) => <span>{rowData.inovation_note}</span>} />
+                <Column field="env_note" header="Environnement" body={(rowData) => <span>{rowData.env_note}</span>} />
+                <Column field="pertinence_note" header="Pertinence" body={(rowData) => <span>{rowData.pertinence_note}</span>} />
+                <Column field="total" header="Total" body={(rowData) => <span>{rowData.total}</span>} />
+                <Column 
+                    header="Commentaire" 
+                    body={(rowData) => (
+                        <div>
+                            <Button label="Show Comment" className="h-8" onClick={() => openDialog(rowData.comentaire)} />
+                        </div>
+                    )}
+                />
+            </DataTable>
 
-export default page
+            <Dialog header="Comment" visible={visible} style={{ width: '50vw' }} onHide={closeDialog} draggable={false}>
+                <p className="m-0">{selectedComment}</p>
+            </Dialog>
+        </div>
+    );
+};
+
+export default Page;

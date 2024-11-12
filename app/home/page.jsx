@@ -29,9 +29,9 @@ const Page = () => {
     }, []);
 
     return (
-        <div className='card'>
-            <TabView  >
-              <TabPanel header="Non-notéé">
+        <div>
+            <TabView className='h-5/6'>
+              <TabPanel header="Non-notéé" className='h-5/6'>
                 <CustomTable data={inactiveProjects}/>
               </TabPanel>
               <TabPanel header="Notéé">

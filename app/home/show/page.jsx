@@ -4,12 +4,14 @@ import { Steps } from 'primereact/steps';
 import { Button } from 'primereact/button';
 import { Info } from '../../components/Info';
 import { PdfViewer } from '../../components/PdfViewer';
+import { MyVideo } from '../../components/MyVideo';
 import { Note } from '../../components/Note';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { axiosDB } from '../../api/axios';
 
 export default function Test() {
+    const router = useRouter();
     const searchParams = useSearchParams();
     const [activeIndex, setActiveIndex] = useState(0);
     const [project, setProject] = useState({});
@@ -51,7 +53,6 @@ export default function Test() {
         const fetchPdf = async () => {
             try {
                 const response3 = await axiosDB.get(`/get_project_pdf/${project_id}`);
-                console.log('response 3 : ', response3.data);
                 setPdf(response3.data.url);
             } catch (error) {
                 console.error('Error fetching PDF : ', error);
@@ -118,9 +119,14 @@ export default function Test() {
             template: (item) => itemRenderer(item, 1)
         },
         {
-            icon: 'pi pi-check',
-            label: 'Evaluation',
+            icon: 'pi pi-clipboard',
+            label: 'Video',
             template: (item) => itemRenderer(item, 2)
+        },
+        {
+            icon: 'pi pi-check',
+            label: 'Evaluer',
+            template: (item) => itemRenderer(item, 3)
         }
     ];
 
@@ -138,18 +144,21 @@ export default function Test() {
             })
 
             console.log(response);
+            router.push('/home');
         } catch (error){
             console.error('Error validating notes:',error);
         }
     }
     
     return (
-        <div className="card max-h-screen h-[60rem] relative">
+        <div className="card max-h-screen h-[50rem] relative">
             <Steps model={items} activeIndex={activeIndex} readOnly={false} className="m-2 pt-4" />
             {activeIndex === 0 ? (
                 <Info projet={project} />
             ) : activeIndex === 1 ? (
                 <PdfViewer src={pdf} />
+            ) : activeIndex === 2 ? (
+                <MyVideo />
             ) : (
                 <Note notes={notes} onValuesChange={handleValuesChange} />
             )}

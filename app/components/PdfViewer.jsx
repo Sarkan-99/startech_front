@@ -7,8 +7,8 @@ export const PdfViewer = ({ src }) => {
     console.log('Nope')
   }
   return (
-    <div className="h-[60rem] mt-10 flex justify-center" >
-      <iframe id="pdframe" src={src} frameBorder="0" width="80%" height="70%" ></iframe>
+    <div className="h-[50rem] mt-10 flex justify-center" >
+      <iframe id="pdframe" src="/user_507.pdf" frameBorder="0" width="80%" height="70%" ></iframe>
     </div>
   );
 };
