@@ -21,8 +21,9 @@ const Policy = () => {
         setAccepted(!accepted);
     };
                            return (
-                            <div className="flex items-center justify-center h-screen w-screen bg-black/30">
+                            <div className="fixed top-0 left-0 flex items-center justify-center h-screen w-screen bg-black bg-opacity-80 z-10">
                                 <Card className="h-4/5 w-1/2 p-0 overflow-hidden">
+
                                     {/* Title */}
                                     <div className="sticky top-0 z-10 bg-gray-100">
                                         <p className="p-5 pl-10 m-0 font-semibold text-lg" style={{ borderBottom: '1px solid #d1d5db' }}>
@@ -30,15 +31,16 @@ const Policy = () => {
                                     </div>
                         
                                     {/* Scroll */}
-                                    <div className="overflow-y-auto h-2/3" style={{ borderBottom: '1px solid #d1d5db' }}>
+                                    <div className="overflow-y-auto h-2/3 pt-5 " style={{ borderBottom: '1px solid #d1d5db' }}>
                                         <p className="font-sans text-base px-16 pb-5 m-0 leading-loose" style={{ whiteSpace: 'pre-line' }}>
                                             {privacyNpolicy}
                                         </p>
                                         <ScrollTop target=".custom-scrollbar" threshold={100} className="w-2rem h-2rem border-round bg-primary" icon="pi pi-arrow-up text-base" />
                                     </div>
 
-                                    {/* checkBox */}
+                                    {/* CheckBoxNbutton */}
                                     <div>
+                                    {/* CheckBox */}
                                         <div className="m-3 ml-10">
                                             <div className="flex align-items-center">
                                             <Checkbox
@@ -47,29 +49,26 @@ const Policy = () => {
                                                 value="PrivacyPolicy"
                                                 onChange={onAcceptanceChange}
                                                 checked={accepted}
-                                            />
+                                                />
                                             <label htmlFor="privacy-policy" className="ml-1 mt-1 text-xs">
                                             J&apos;accepte</label>
                                             </div>
-                                        </div>
-                                            <div className="relative w-full flex justify-end mt-4">
-                                                <Link href={accepted ? "/home" : "#"} passHref>
+                                    </div>
+
+                                    {/* Button */}
+                                        <div className={`relative w-full flex justify-end mt-4 `}>
+                                                <Link href={accepted ? "/home" : "#"} passHref className={`${accepted ? 'hover:cursor-pointer' : 'pointer-events-none'}`} >
                                                     <Button className={`mr-5 ${!accepted ? 'disabled-link' : ''}`} label="J'accepte" severity="success" disabled={!accepted} />
                                                     </Link>
                                         
-                                            </div>
                                         </div>
+                                    </div>
+
                                 </Card>
                             </div>
                         );
                         
                         
-                        
-                        
-                        
-                        
-
-    
 }
 
 export default Policy
