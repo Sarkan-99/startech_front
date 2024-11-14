@@ -2,7 +2,7 @@
 export const Info = ({ projet }) => {
   
   return (
-    <div className="mt-10  flex justify-center " >
+    <div className="mt-10  flex justify-center" >
       <div className="card shadow-md w-7/12">
       <table className="table">
       <tbody>

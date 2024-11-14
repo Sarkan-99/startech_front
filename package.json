@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-pdf-viewer/core": "^3.12.0",
+    "@react-pdf-viewer/zoom": "^3.12.0",
     "axios": "^1.7.7",
     "next": "^15.0.2",
     "next-auth": "^4.24.10",
+    "pdfjs-dist": "^3.8.162",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
     "primereact": "^10.8.4",

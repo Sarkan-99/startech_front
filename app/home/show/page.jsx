@@ -24,12 +24,13 @@ export default function Test() {
     const [env, setEnv] = useState(null);
     const [comment, setcomment] = useState(null);
  
-    const project_id = searchParams.get('project_id');
+    
     const [pdf, setPdf] = useState("");
     
     const [notes, setNotes] = useState([]); // Assuming project_id comes from somewhere, like a search param
 
     useEffect(() => {
+        const project_id = searchParams.get('project_id');
         const fetchProject = async () => {
             try {
                 const response = await axiosDB.get(`/projet/${project_id}`);
@@ -53,6 +54,7 @@ export default function Test() {
         const fetchPdf = async () => {
             try {
                 const response3 = await axiosDB.get(`/get_project_pdf/${project_id}`);
+                console.log('url from Show page : ', response3.data.url);
                 setPdf(response3.data.url);
             } catch (error) {
                 console.error('Error fetching PDF : ', error);
@@ -63,7 +65,7 @@ export default function Test() {
             fetchNotes();
             fetchPdf();
         }
-    }, [project_id]);
+    }, [searchParams]);
 
     const handleValuesChange = (values) => {
         setValiderDisabled(values.some(value => value === null));

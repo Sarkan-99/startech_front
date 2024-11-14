@@ -3,10 +3,12 @@
 import { useEffect, useState } from 'react';
 import { axiosDB } from '../api/axios';
 import { TabPanel, TabView } from 'primereact/tabview';
+import useAuth from '../hooks/useAuth';
 import CustomTable from '../components/CustomTable';
 
 const Page = () => {    
 
+    useAuth();
     const [activeProjects, setActiveProjects] = useState([]);
     const [inactiveProjects, setInactiveProjects] = useState([]);
 

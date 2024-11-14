@@ -14,10 +14,10 @@ const Page = () => {
     const [visible, setVisible] = useState(false);
     const [selectedProf, setSelectedProf] = useState(null);
     const [selectedComment, setSelectedComment] = useState("");
-    const project_id = searchParams.get('project_id');
     const dataTableRef = useRef(null);
 
     useEffect(() => {
+        const project_id = searchParams.get('project_id');
         const fetchNotes = async () => {
             try {
                 const response = await axiosDB.post('/notes/projet', { id_projet: project_id });
@@ -36,7 +36,7 @@ const Page = () => {
         };
 
         if (project_id) fetchNotes();
-    }, [project_id]);
+    }, [searchParams]);
 
     const openDialog = (comment) => {
         setSelectedComment(comment);

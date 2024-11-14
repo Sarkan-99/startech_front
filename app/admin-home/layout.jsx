@@ -1,7 +1,7 @@
 "use client"
 
 import { Card } from 'primereact/card';
-import React, { useRef } from 'react';
+import React, { Suspense, useRef } from 'react';
 import 'primeicons/primeicons.css';
 import { Button } from 'primereact/button';
 import { OverlayPanel } from 'primereact/overlaypanel';
@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import { Image } from 'primereact/image';
 
 
-const mainpage = ({children}) => {
+const Mainpage = ({children}) => {
 
   const op = useRef(null);
   const router = useRouter();
@@ -43,7 +43,9 @@ const mainpage = ({children}) => {
       <div className='static bg-blue-500 h-1/3 w-full flex justify-center'>
       <div className="absolute h-3/4 w-4/5 mt-36 flex justify-center items-center bg-white rounded">
         <Card className='h-full w-full'>
-        {children}
+        <Suspense fallback={<div>Loading...</div>}>
+          { children }
+        </Suspense>
         </Card>
       </div>
       </div>
@@ -51,4 +53,4 @@ const mainpage = ({children}) => {
   )
 }
 
-export default mainpage
+export default Mainpage

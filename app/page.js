@@ -3,6 +3,7 @@ import { Button } from 'primereact/button';
 import Link from 'next/link';
 import { Card } from 'primereact/card';
 import { Divider } from 'primereact/divider';
+import Image from 'next/image';
 
 const page = () => {
   return (
@@ -14,10 +15,11 @@ const page = () => {
          <div className="text-center grid">
              <form>
                  <div>
-                 <Link href="http://127.0.0.1:8000/auth/google" passHref>
+                 {/* <Link href="http://127.0.0.1:8000/auth/google" passHref> */}
+                 <Link href="https://backend.competence-info.com/auth/google" passHref>
                      <Button outlined severity="secondary">
                          <div className="flex justify-center items-center">
-                         <img alt="logo" src="https://img.icons8.com/ios-filled/50/google-logo.png" className="mr-3" height={25}></img>
+                          <Image alt="logo" src="https://img.icons8.com/ios-filled/50/google-logo.png" width={50} className="mr-3" height={25}/>
                          <span className="font-medium">Se connecter avec Google</span>
                      </div>
                      </Button>
