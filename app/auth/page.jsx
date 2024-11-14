@@ -2,6 +2,8 @@
 
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { ProgressSpinner } from 'primereact/progressspinner';
+
 
 const Page = () => {
   const router = useRouter();
@@ -25,7 +27,9 @@ const Page = () => {
   }, []);
 
   return (
-    <div>Loading...</div>
+    <div className='flex justify-center items-center h-screen'>
+      <ProgressSpinner style={{width: '50px', height: '50px'}} strokeWidth="4" fill="var(--surface-ground)" animationDuration=".5s" />
+    </div>
   );
 };
 
