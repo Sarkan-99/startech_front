@@ -8,6 +8,13 @@
 
 @layer reset, primereact;
 @layer reset {
+  .custom-checkbox input:checked + .p-checkbox-box {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.custom-checkbox .p-checkbox-box {
+    --primary-color: #007bff; /* Use your button's primary color */
+}
   html {
     font-size: 14px;
 }
@@ -74,21 +81,45 @@ body {
   width: 400px;
   height: 1000px;
 }
+input.p-inputnumber-input.p-inputtext.p-component {
+  width: 40px ;
+
+}
 
 .table{
   font-size: large;
-  width: 60%;
+  width: 80%;
+}
+.note > tr > th{
+  text-align: left;
+}
+.note > tr > td{
+  text-align: right;
 }
 
-td {
+tr{
   text-align: left;
-  height: 3rem;
+}
+td{
+  text-align: left;
+}
+.info{
+  width: 100%;
+}
+.info > tr > td{
+  padding: 8px;
+  text-align: left;
+  width: 18rem;
 }
 
-th {
+.info > tr > th {
+  padding: 8px;
+  width: 1rem;
   text-align: left;
-  height: 3rem;
 
+}
+#point{
+  width: 2px;
 }
 
 .card {
@@ -107,35 +138,82 @@ th {
 .p-card-content {
   height: 100%;
 }
-
-.p-card .p-card-body {
-  padding: 0rem;
+/* Add this to your global CSS or Tailwind config */
+.p-datatable-container {
+  width: 100%;
+  overflow-x: auto; /* Allow horizontal scroll if needed */
 }
 
-/* Apply custom scrollbar styling to elements with the custom-scrollbar class */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 5px;
+.p-datatable {
+  width: 100% !important; /* Ensure the table uses full width */
+  table-layout: auto; /* Auto adjusts columns to fit */
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background-color: #d4d4d4;
-  border-radius: 0px 10px 10px 0px; /* Adds a rounded border to the track */
+.p-datatable-header {
+  display: none; /* Hide header for smaller screens */
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #afafaf;
-  border-radius: 10px ; /* Adds a rounded border to the thumb */
+.p-column {
+  min-width: 150px; /* Set a minimum column width */
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: #9c9c9c;
+@media (max-width: 768px) {
+  .p-datatable {
+    table-layout: fixed; /* Fixed layout for better column management */
+  }
+
+  .p-column {
+    min-width: 120px; /* Smaller minimum width for columns */
+  }
+
+  .p-datatable-header {
+    display: block; /* Show header back on small screens */
+  }
+  
+  /**/
+  .card-container {
+    width: 90%; /* Reduce the width on smaller screens */
+    padding: 2rem; /* Add padding for better readability */
+  }
+
+  header {
+    flex-direction: column;
+    padding: 1rem; /* Adjust padding for mobile */
+  }
+
+  header .ml-auto {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
 }
 
-.disabled-link {
-  pointer-events: none;  /* Disable clicking */
-  cursor: not-allowed;  /* Change cursor to not-allowed when hovering */
+@media (max-width: 480px) {
+  /**/
+  .card-container {
+    width: 100%; /* Make card full-width on very small screens */
+  }
+
+  header {
+    padding: 0.5rem; /* Smaller header padding */
+  }
+
+  .logo {
+    width: 80px; /* Reduce logo size for small screens */
+  }
 }
 
+.responsive-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 1000px) {
+  .responsive-image {
+    display: none;
+  }
+}
 
 }
 @layer primereact {

@@ -1,12 +1,13 @@
 import React from "react";
 import ReactPlayer from "react-player";
 
-const MyVideo = () => {
+const MyVideo = ({ src }) => {
   const videoUrl = "https://www.youtube.com/watch?v=BxaTgTtbnpE"; // Regular YouTube URL
+  console.log('hello form video youtube src : ', src);
   
   return (
     <div className=" mt-10 flex justify-center">
-      <ReactPlayer url={videoUrl} 
+      <ReactPlayer url={ src }
        width="70%"  // Or any other percentage or pixel value
        height="500px"
        controls={true}  // Disables the YouTube controls

@@ -3,12 +3,10 @@
 import { useEffect, useState } from 'react';
 import { axiosDB } from '../api/axios';
 import { TabPanel, TabView } from 'primereact/tabview';
-import useAuth from '../hooks/useAuth';
 import CustomTable from '../components/CustomTable';
 
 const Page = () => {    
 
-    useAuth();
     const [activeProjects, setActiveProjects] = useState([]);
     const [inactiveProjects, setInactiveProjects] = useState([]);
 
@@ -16,11 +14,11 @@ const Page = () => {
       const fetchProjects = async () => {
         try {
           const response = await axiosDB.get('/projects');
+          console.log('from home : ', response)
   
-          const projectsArray = Object.values(response.data.projects);
-          
-          setActiveProjects(projectsArray.filter(project => project.statut == 1));
-          setInactiveProjects(projectsArray.filter(project => project.statut == 0));
+          setActiveProjects(Object.values(response.data.projects_noted));
+          setInactiveProjects(Object.values(response.data.projects_not_noted))
+
   
       } catch (error) {
           console.error('Error fetching projects: ', error);
@@ -31,12 +29,12 @@ const Page = () => {
     }, []);
 
     return (
-        <div>
-            <TabView className='h-5/6'>
-              <TabPanel header="Non-notéé" className='h-5/6'>
+        <div className="pt-1">
+            <TabView className="w-full">
+              <TabPanel header="Non-notés">
                 <CustomTable data={inactiveProjects}/>
               </TabPanel>
-              <TabPanel header="Notéé">
+              <TabPanel header="Notés">
                 <CustomTable data={activeProjects}/>
               </TabPanel>
             </TabView>

@@ -9,28 +9,29 @@ const Page = () => {
   const [accepted, setAccepted] = useState(false);
 
   useEffect(() => {
-    const redirectByMe = async () => {
+    const redirectByMe = () => {
       const urlParams = new URLSearchParams(window.location.search);
       const token = urlParams.get('token');
   
-      if (token && accepted) {
+      if (token) {
         localStorage.setItem('google_access_token', token);
-        console.log("token storred");
-        router.push('/home');
-      } else if(token && !accepted){
-        localStorage.setItem('google_access_token', token);
-        router.push("#")
+        if (accepted) {
+          console.log("Token stored and policy accepted, redirecting to /home");
+          router.push('/home');
+        } else {
+          console.log("Token stored but policy not accepted, staying on current page");
+        }
       } else {
         router.push('/');
       }
     };
 
     redirectByMe();
-  }, [router, accepted]);
+  }, [accepted, router]);
 
   return (
     <div>
-      <Policy hello={accepted} event={setAccepted}/>
+      <Policy setValidation={setAccepted}/>
     </div>
   );
 };

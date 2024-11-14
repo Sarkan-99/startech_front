@@ -9,11 +9,10 @@ export const PdfViewer = ({ src }) => {
     >
       <iframe 
         id="pdframe" 
-        src={`${src}#toolbar=0`} 
+        src={src? `${src}#toolbar=0`:`/test-pdf.pdf`} 
         frameBorder="0" 
         width="80%" 
         height="70%"
-        onContextMenu={(e) => e.preventDefault()}
       ></iframe>
     </div>
   );

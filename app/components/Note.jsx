@@ -18,10 +18,10 @@ export const Note = ({ onValuesChange, notes }) => {
 
 
   return (
-    <div className="mt-10  flex justify-center " >
-      <div className=" shadow-md w-10/12">
+    <div className="mt-10 flex justify-center " >
+      <div className="flex flex-col justify-center w-10/12">
       <table className="table">
-      <tbody>
+      <tbody className="note">
         
         <tr>
           <th>Qualité de présentation du dossier</th>
@@ -62,7 +62,7 @@ export const Note = ({ onValuesChange, notes }) => {
       </tbody>
       </table>
       <div className="flex justify-center w-11/12 mt-2">
-    <InputTextarea id="Commentaire" value={value6} onChange={(e) => setValue6(e.target.value)} rows={5} cols={100} />
+    <InputTextarea id="Commentaire" value={value6} onChange={(e) => setValue6(e.target.value)} rows={5} className="w-10/12"/>
         </div>
       </div>
     </div>
