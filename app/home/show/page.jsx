@@ -92,7 +92,7 @@ export default function Test() {
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '-4px' }}
             >
                 <span
-                    className="c-step"
+                    className="c-step "
                     style={{
                         backgroundColor: backgroundColor,
                         color: textColor,
@@ -102,7 +102,7 @@ export default function Test() {
                 >
                     <i className={`${item.icon} text-xl`} />
                 </span>
-                <span className="step-label" style={{ marginTop: '5px', color: labelColor , fontSize: 'large' }}>
+                <span className="step-label " style={{ marginTop: '5px', color: labelColor , fontSize: 'large' }}>
                     {item.label}
                 </span>
             </div>
