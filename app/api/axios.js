@@ -1,8 +1,7 @@
 import axios from "axios";
 
 export const axiosDB = axios.create({
-  // baseURL: 'https://backend.competence-info.com/api',
-  baseURL: 'http://127.0.0.1:8000/api',
+  baseURL: 'https://backend.competence-info.com/api',
   headers: {
     "Content-Type": 'application/json',
   }
