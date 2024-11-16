@@ -14,19 +14,16 @@ const CustomTable = ({ data }) => {
   useEffect(() => {
     const updateRowsPerPage = () => {
       const pageHeight = window.innerHeight;
-      // Calculate number of rows based on the height of the page (you can adjust this factor as needed)
-      const rows = Math.floor((pageHeight - 400) / 50); // Subtract some padding and use 50px per row as a rough estimate
-      setRowsPerPage(rows > 0 ? rows : 4); // Ensure at least 4 rows
+      const rows = Math.floor((pageHeight - 400) / 50);
+      setRowsPerPage(rows > 0 ? rows : 4);
     };
 
-    // Update rows when the page is resized
     window.addEventListener('resize', updateRowsPerPage);
 
-    // Initial calculation
     updateRowsPerPage();
 
     return () => {
-      window.removeEventListener('resize', updateRowsPerPage); // Cleanup event listener
+      window.removeEventListener('resize', updateRowsPerPage);
     };
   }, []);
 
@@ -59,13 +56,14 @@ const CustomTable = ({ data }) => {
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         currentPageReportTemplate="{first} a {last} de {totalRecords}"
       >
+        <Column header="Projet" body={projectNameBodyTemplate} style={{ minWidth: '150px', flex: '1 1 150px' }} />
+        <Column header="Porteur de projet" body={representativeBodyTemplate} style={{ minWidth: '150px', flex: '1 1 150px' }} />
         <Column header="Pays" body={countryBodyTemplate} style={{ minWidth: '150px', flex: '1 1 150px' }} />
-        <Column header="Agent" body={representativeBodyTemplate} style={{ minWidth: '150px', flex: '1 1 150px' }} />
         <Column
           header="Action"
           body={(rowData) => (
             <Link href={{ pathname: '/home/show', query: { project_id: JSON.stringify(rowData.id) } }}>
-              <Button label="Noter" className="h-8" />
+              <Button label="Afficher" className="h-8" />
             </Link>
           )}
           style={{ minWidth: '150px', flex: '1 1 150px' }}

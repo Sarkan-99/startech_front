@@ -11,9 +11,9 @@ const page = () => {
     <div className='flex flex-row h-screen w-screen overflow-hidden'>
       {/* photo */}
 
-      <div className="bg-blue-300 h-screen relative" >
-        <Image alt="logo" src="/login-page.png" height={610} className='responsive-image'/>
-        <div className="absolute top-0 left-0 w-full h-full flex items-start justify-center bg-blue-300 bg-opacity-30">
+      <div className=" h-screen relative" >
+        <Image alt="logo" src="/login-page.png" height={712.3} className='responsive-image'/>
+        <div className="absolute top-0 left-0 w-full h-full flex items-start justify-center">
           
         </div>
       </div>
@@ -22,7 +22,7 @@ const page = () => {
 
       <div className="relative flex justify-center items-center h-screen w-full bg-gray-50">
         <Image src='/LogoBlack.png' alt="" className='absolute top-10 right-10' height='45'></Image>
-        <div className='absolute flex flex-col h-2/4 top-24 justify-around'>
+        <div className='absolute flex flex-col h-3/4 top-24 justify-around'>
           <div>
               <h1 className=" font-bold">Connectez vous sur StarTechAfrica</h1>
               
@@ -34,7 +34,7 @@ const page = () => {
             <div className="text-center grid">
                 <form>
                     <div>
-                    <Link href="https://backend.competence-info.com/auth/google" passHref>  
+                    <Link href="http://127.0.0.1:8000/auth/google" passHref>  
                         <Button outlined severity="secondary">
                             <div className="flex justify-center items-center">
                             <Image src="/Google-logo.png" alt="" className="mr-3" width={26} height={25}></Image>

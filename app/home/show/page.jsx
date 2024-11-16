@@ -39,7 +39,6 @@ export default function Test() {
                     axiosDB.post('/notes/add', { id_projet: project_id }),
                     axiosDB.get(`/get_project_pdf/${project_id}`)
                 ]);
-                console.log("note from show: ",notesResponse.data.note);
                 setProject(projectResponse.data.projet);
                 setNotes(notesResponse.data.note);
                 setPdf(pdfResponse.data.url);
@@ -85,7 +84,7 @@ export default function Test() {
                 pertinence_note: partinence,
                 effort_note: effort,
                 env_note: env,
-                id_projet: project_id,
+                id_projet: project.id,
             });
             router.push('/home');
         } catch (error) {
@@ -105,12 +104,11 @@ export default function Test() {
 
     const items = [
         { icon: 'pi pi-user', label: 'Informations', template: item => itemRenderer(item, 0) },
-        { icon: 'pi pi-clipboard', label: 'Rapport', template: item => itemRenderer(item, 1) },
+        { icon: 'pi pi-clipboard', label: 'Formulaire', template: item => itemRenderer(item, 1) },
         { icon: 'pi pi-clipboard', label: 'Video', template: item => itemRenderer(item, 2) },
         { icon: 'pi pi-check', label: 'Evaluer', template: item => itemRenderer(item, 3) }
     ];
 
-    console.log('notttttttttttttttttttt : ', notes);
     const itemRenderer = (item, itemIndex) => {
         const isActive = activeIndex === itemIndex;
         return (

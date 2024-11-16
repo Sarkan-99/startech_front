@@ -10,9 +10,9 @@ const Page = () => {
     useEffect(() => {
       const fetchProjects = async () => {
         try {
-          const response = await axiosDB.get('/projets/all');
+          const response = await axiosDB.get('/get_all_projects');
          
-            const projectsArray = Object.values(response.data.projets);
+            const projectsArray = Object.values(response.data.result);
             setProjects(projectsArray);
             console.log('projects : ', projectsArray)
   

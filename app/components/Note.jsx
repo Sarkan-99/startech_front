@@ -11,8 +11,11 @@ export const Note = ({ onValuesChange, notes }) => {
     const [value4, setValue4] = useState(notes.effort_note);
     const [value5, setValue5] = useState(notes.env_note);
     const [value6, setValue6] = useState(notes.comentaire);
+    const [value7, setValue7] = useState(0);
+
 
     useEffect(() => {
+      setValue7(value1*2+value2*2+value3+value4*2+value5);
         onValuesChange([value1, value2, value3, value4, value5, value6]);
     }, [value1, value2, value3, value4, value5,value6, onValuesChange]);
 
@@ -22,38 +25,43 @@ export const Note = ({ onValuesChange, notes }) => {
       <div className="flex flex-col justify-center w-10/12">
       <table className="table">
       <tbody className="note">
-        
         <tr>
           <th>Qualité de présentation du dossier</th>
-          <th>:</th>
+          <th>(coef:2)</th>
           <td><InputNumber value={value1} onValueChange={(e) => setValue1(e.value)} mode="decimal"  min={0} max={10} maxFractionDigits={2}/></td>
           <td>/10</td>
         </tr>
         <tr>
           <th>Caractère innovant</th>
-          <th>:</th>
+          <th>(coef:2)</th>
           <td><InputNumber value={value2} onValueChange={(e) => setValue2(e.value)} mode="decimal"  min={0} max={10} maxFractionDigits={2}/></td>
           <td>/10</td>
         </tr>
         <tr>
           <th>Pertinence</th>
-          <th>:</th>
+          <th>(coef:1)</th>
           <td><InputNumber  value={value3} onValueChange={(e) => setValue3(e.value)} mode="decimal"  min={0} max={10} maxFractionDigits={2}/></td>
           <td>/10</td>
         </tr>
         <tr>
           <th>Effort de développement engagé, faisabilité et viabilité</th>
-          <th>:</th>
+          <th>(coef:2)</th>
           <td><InputNumber  value={value4} onValueChange={(e) => setValue4(e.value)} mode="decimal"  min={0} max={10} maxFractionDigits={2}/></td>
           <td>/10</td>
         </tr>
         <tr>
           <th>Intérêt environnemental, économique et social</th>
-          <th>:</th>
+          <th>(coef:1)</th>
           <td><InputNumber value={value5} onValueChange={(e) => setValue5(e.value)} mode="decimal"  min={0} max={10} maxFractionDigits={2}/></td>
           <td>/10</td>
         </tr>
         <tr>
+          <th></th>
+          <th></th>
+          <td className="py-5 pl-4 text-center">{value7}</td>
+          <td>/80</td>
+        </tr>
+        <tr className="">
           <th>Commentaire :</th>
           <th></th>
           <td></td>

@@ -23,7 +23,7 @@ const RankedTable = ({ data }) => {
   };
 
   const projectIdTemplate = (rowData, { rowIndex }) => {
-    return <span>{rowIndex + 1}</span>;
+    return <span>N° {rowIndex + 1}</span>;
   };
   
   return (

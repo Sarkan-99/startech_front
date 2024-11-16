@@ -5,7 +5,7 @@ import { axiosDB } from '../api/axios';
 import { TabPanel, TabView } from 'primereact/tabview';
 import CustomTable from '../components/CustomTable';
 
-const Page = () => {    
+const Page = () => {
 
     const [activeProjects, setActiveProjects] = useState([]);
     const [inactiveProjects, setInactiveProjects] = useState([]);
@@ -31,10 +31,10 @@ const Page = () => {
     return (
         <div className="pt-1">
             <TabView className="w-full">
-              <TabPanel header="Non-notés">
+              <TabPanel header="Non-évalués">
                 <CustomTable data={inactiveProjects}/>
               </TabPanel>
-              <TabPanel header="Notés">
+              <TabPanel header="Evalués">
                 <CustomTable data={activeProjects}/>
               </TabPanel>
             </TabView>
