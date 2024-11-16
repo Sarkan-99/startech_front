@@ -25,6 +25,10 @@ const RankedTable = ({ data }) => {
   const projectIdTemplate = (rowData, { rowIndex }) => {
     return <span>N° {rowIndex + 1}</span>;
   };
+
+  const moyenneBodyTemplate = (rowData) => {
+    return <span>{rowData.note_total}</span>
+  }
   
   return (
     <DataTable
@@ -42,16 +46,17 @@ const RankedTable = ({ data }) => {
       
       <Column field="classement" header="Classement" body={projectIdTemplate}/>
 
-      <Column field="name" header="Project Name" body={projectNameBodyTemplate} style={{ width: '25%' }} />
+      <Column field="name" header="Projet" body={projectNameBodyTemplate} style={{ width: '25%' }} />
 
-      <Column header="Country" body={countryBodyTemplate} style={{ width: '25%' }} />
+      <Column header="Pays" body={countryBodyTemplate} style={{ width: '25%' }} />
 
-      <Column header="Agent" body={representativeBodyTemplate} style={{ width: '25%' }} />
+      <Column header="Porteur du projet" body={representativeBodyTemplate} style={{ width: '25%' }} />
+      <Column header="Moyenne" body={moyenneBodyTemplate} style={{ width: '25%' }} />
       <Column
         header="Action"
         body={(rowData) => (
           <Link href={{ pathname: '/admin-home/admin-show', query: { project_id: JSON.stringify(rowData.id) } }}>
-            <Button label="Show" className="h-8" />
+            <Button label="Afficher" className="h-8" />
           </Link>
         )}
       />

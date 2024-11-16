@@ -9,8 +9,10 @@ import { Note } from '../../components/Note';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { axiosDB } from '../../api/axios';
+import { useLoading } from '../../contexts/LoadingContext';
 
 export default function Test() {
+    const { setLoading } = useLoading();
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -33,6 +35,7 @@ export default function Test() {
         const project_id = searchParams.get('project_id');
 
         const fetchData = async () => {
+            setLoading(true);
             try {
                 const [projectResponse, notesResponse, pdfResponse] = await Promise.all([
                     axiosDB.get(`/projet/${project_id}`),
@@ -44,6 +47,8 @@ export default function Test() {
                 setPdf(pdfResponse.data.url);
             } catch (error) {
                 console.error('Error fetching data:', error);
+            } finally{
+                setLoading(false);
             }
         };
         
@@ -62,7 +67,7 @@ export default function Test() {
             window.removeEventListener("resize", handleResize);
         };
 
-    },[searchParams]);
+    },[searchParams, setLoading]);
 
     const handleValuesChange = (values) => {
         setValiderDisabled(values.includes(null));

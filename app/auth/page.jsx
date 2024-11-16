@@ -4,8 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Policy from '../components/Policy';
 import { axiosDB } from '../api/axios';
+import { useLoading } from '../contexts/LoadingContext';
 
 const Page = () => {
+  
+  const { setLoading } = useLoading();
   const router = useRouter();
   const [accepted, setAccepted] = useState(false);
 
@@ -20,7 +23,6 @@ const Page = () => {
           try{
             const response = await axiosDB.get('/user');
             console.log("Token stored and policy accepted, redirecting to /home");
-            console.log('role : ', response.data.user.role)
             if(response.data.user.role === 'admin'){
               router.push('/admin-home');
             } else {

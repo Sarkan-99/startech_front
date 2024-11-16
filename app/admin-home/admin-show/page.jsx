@@ -7,8 +7,11 @@ import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import React, { useEffect, useState, useRef } from 'react';
 import { axiosDB } from '../../api/axios';
+import { useLoading } from '../../contexts/LoadingContext';
+import Link from 'next/link';
 
 const Page = () => {
+    const { setLoading } = useLoading();
     const searchParams = useSearchParams();
     const [notes, setNotes] = useState([]);
     const [visible, setVisible] = useState(false);
@@ -19,9 +22,11 @@ const Page = () => {
     useEffect(() => {
         const project_id = searchParams.get('project_id');
         const fetchNotes = async () => {
+            setLoading(true);
             try {
-                const response = await axiosDB.post('/notes/projet', { id_projet: project_id });
+                const response = await axiosDB.get('/notes/projet', {params: { "id_projet": project_id }});
                 const notesData = response.data.notes;
+                console.log('result from admin show : ', response.data);
 
                 if (notesData && typeof notesData === 'object') {
                     setNotes(Object.values(notesData));
@@ -29,14 +34,15 @@ const Page = () => {
                     setNotes(notesData || []);
                 }
 
-                console.log('Fetched notes:', notesData);
             } catch (error) {
                 console.error('Error fetching notes:', error);
+            } finally {
+                setLoading(false);
             }
         };
 
         if (project_id) fetchNotes();
-    }, [searchParams]);
+    }, [searchParams, setNotes, setLoading]);
 
     const openDialog = (comment) => {
         setSelectedComment(comment);
@@ -58,7 +64,7 @@ const Page = () => {
                 onSelectionChange={(e) => setSelectedProf(e.value)}
                 selectionMode="single"
             >
-                <Column field="code" header="Prof" />
+                <Column field="code" header="Prof" body={(rowData) => <span>{rowData.prof.nom_complet}</span>}/>
                 <Column field="qualite_note" header="Qualité" body={(rowData) => <span>{rowData.qualite_note}</span>} />
                 <Column field="effort_note" header="Effort" body={(rowData) => <span>{rowData.effort_note}</span>} />
                 <Column field="inovation_note" header="Innovation" body={(rowData) => <span>{rowData.inovation_note}</span>} />
@@ -74,10 +80,15 @@ const Page = () => {
                     )}
                 />
             </DataTable>
-
             <Dialog header="Comment" visible={visible} style={{ width: '50vw' }} onHide={closeDialog} draggable={false}>
                 <p className="m-0">{selectedComment}</p>
             </Dialog>
+            <Link href='/admin-home'>
+                <Button label="fermer" severity="secondary" icon="pi pi-times" iconPos="right" />
+            </Link>
+            <Link href='/admin-home'>
+                <Button label="Export" severity="secondary" icon="pi pi-times" iconPos="right" />
+            </Link>
         </div>
     );
 };

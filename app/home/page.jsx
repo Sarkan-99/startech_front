@@ -4,14 +4,17 @@ import { useEffect, useState } from 'react';
 import { axiosDB } from '../api/axios';
 import { TabPanel, TabView } from 'primereact/tabview';
 import CustomTable from '../components/CustomTable';
+import { useLoading } from '../contexts/LoadingContext';
 
 const Page = () => {
+  const {setLoading} = useLoading(); 
 
     const [activeProjects, setActiveProjects] = useState([]);
     const [inactiveProjects, setInactiveProjects] = useState([]);
 
     useEffect(() => {
       const fetchProjects = async () => {
+        setLoading(true);
         try {
           const response = await axiosDB.get('/projects');
           console.log('from home : ', response)
@@ -22,11 +25,13 @@ const Page = () => {
   
       } catch (error) {
           console.error('Error fetching projects: ', error);
+      } finally {
+        setLoading(false);
       }
       };
 
       fetchProjects();
-    }, []);
+    }, [setLoading]);
 
     return (
         <div className="pt-1">

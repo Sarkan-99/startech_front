@@ -1,19 +1,34 @@
 "use client"
 
 import { Card } from 'primereact/card';
-import React, { Suspense, useRef } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import 'primeicons/primeicons.css';
 import { Button } from 'primereact/button';
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { axiosDB } from '../api/axios';
 import { useRouter } from 'next/navigation';
 import { Image } from 'primereact/image';
+import { Divider } from 'primereact/divider';
 
 
 const Mainpage = ({children}) => {
 
   const op = useRef(null);
   const router = useRouter();
+  const [user, setUser]  = useState({});
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try{
+        const response = await axiosDB.get('/user');
+        setUser(response.data.user);
+      } catch (error) {
+        console.error('Error fetching user : ', error)
+      }
+    }
+
+    fetchUser();
+  },[setUser])
 
   
   async function logOut() {
@@ -35,6 +50,8 @@ const Mainpage = ({children}) => {
             <Button className='my-custom-button' icon="pi pi-user" rounded  aria-label="User" onClick={(e) => op.current.toggle(e)} />
             <OverlayPanel ref={op}>
                 <div className="flex flex-col">
+                    <span>{user.nom_complet}</span>
+                    <Divider/>
                     <Button icon="pi pi-sign-out" text severity="secondary" onClick={logOut} label="Log out" className="h-5"  />
                 </div>
             </OverlayPanel>

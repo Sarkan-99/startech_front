@@ -56,7 +56,7 @@ const MainPage = ({ children }) => {
           />
           <OverlayPanel ref={op}>
             <div className="flex flex-col">
-              <span>Prof : {user.nom_complet}</span>
+              <span>{user.nom_complet}</span>
               <Divider/>
               <Button
                 icon="pi pi-sign-out"

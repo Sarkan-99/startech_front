@@ -1,5 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import { LoadingProvider } from './contexts/LoadingContext';
+import Loading from './components/Loading';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,10 +27,11 @@ export default function RootLayout({ children }) {
         <title>StarTech</title>
        
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <LoadingProvider>
+          <Loading />
+          {children}
+        </LoadingProvider>
       </body>
     </html>
   );
