@@ -47,7 +47,7 @@ const Page = () => {
     }
 
     return (
-        <div className='card '>
+        <div className="p-datatable-container">
             <RankedTable data={projects}/>
             <div className='w-full flex flex-row-reverse'>
               <Button label="Export" severity="success" icon="pi pi-download" iconPos="right" onClick={exportExcel}/>

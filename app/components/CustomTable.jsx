@@ -5,7 +5,7 @@ import { Button } from 'primereact/button';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-const CustomTable = ({ data }) => {
+const CustomTable = ({ data , note }) => {
   const router = useRouter();
   const [filters, setFilters] = useState({});
   const [selectedCustomer, setSelectedCustomer] = useState(null);
@@ -38,7 +38,9 @@ const CustomTable = ({ data }) => {
   const representativeBodyTemplate = (rowData) => {
     return <span>{rowData.projet_porteur}</span>;
   };
-
+  const noteBodyTemplate = (rowData) => {
+    return <span>{rowData.notes?.[0]?.total ?? ''}</span>;;
+  };
   return (
     <div className="p-datatable-container">
       <DataTable
@@ -59,6 +61,7 @@ const CustomTable = ({ data }) => {
         <Column header="Projet" body={projectNameBodyTemplate} style={{ minWidth: '150px', flex: '1 1 150px' }} />
         <Column header="Porteur de projet" body={representativeBodyTemplate} style={{ minWidth: '150px', flex: '1 1 150px' }} />
         <Column header="Pays" body={countryBodyTemplate} style={{ minWidth: '150px', flex: '1 1 150px' }} />
+        {note?<Column header="Note" body={noteBodyTemplate} style={{ minWidth: '150px', flex: '1 1 150px' }} />:null}
         <Column
           header="Action"
           body={(rowData) => (

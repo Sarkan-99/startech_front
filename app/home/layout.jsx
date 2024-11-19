@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import { Image } from 'primereact/image';
 import { Divider } from 'primereact/divider';
 import { ProgressSpinner } from 'primereact/progressspinner';
+import Link from 'next/link';
 
 const MainPage = ({ children }) => {
   const op = useRef(null);
@@ -44,7 +45,9 @@ const MainPage = ({ children }) => {
     <div className="relative bg-zinc-50 min-h-screen p-0 m-0">
       <header className="flex items-center w-full bg-blue-500 p-2">
         {/* Logo */}
-        <Image src="/Logo.png" alt="Logo Image" width="110" className="m-2 ml-5" />
+        <Link href="/home" passHref>
+          <Image src="/Logo.png" alt="Logo Image" width="110" className="m-2 ml-5 cursor-pointer" />
+        </Link>
 
         {/* Logout Button */}
         <div className="absolute top-4 right-5 flex items-center">

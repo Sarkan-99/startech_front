@@ -37,10 +37,10 @@ const Page = () => {
         <div className="pt-1">
             <TabView className="w-full">
               <TabPanel header="Non-évalués">
-                <CustomTable data={inactiveProjects}/>
+                <CustomTable data={inactiveProjects} note={false}/>
               </TabPanel>
               <TabPanel header="Evalués">
-                <CustomTable data={activeProjects}/>
+                <CustomTable data={activeProjects} note={true}/>
               </TabPanel>
             </TabView>
         </div>
