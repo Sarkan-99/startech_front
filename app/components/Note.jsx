@@ -18,7 +18,7 @@ export const Note = ({ onValuesChange1, notes,  onValuesChange2}) => {
       setValue7(value1*2+value2*2+value3+value4*2+value5);
         onValuesChange1([value1, value2, value3, value4, value5, value6]);
         onValuesChange2([value1, value2, value3, value4, value5]);
-    }, [value1, value2, value3, value4, value5,value6, onValuesChange1], [value1, value2, value3, value4, value5, onValuesChange2]);
+    }, [value1, value2, value3, value4, value5,value6, onValuesChange1, onValuesChange2]);
 
 
   return (
