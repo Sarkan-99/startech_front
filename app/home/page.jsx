@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { axiosDB } from '../api/axios';
+import { axiosDB } from '../api/axiosDB';
 import { TabPanel, TabView } from 'primereact/tabview';
 import CustomTable from '../components/CustomTable';
 import { useLoading } from '../contexts/LoadingContext';

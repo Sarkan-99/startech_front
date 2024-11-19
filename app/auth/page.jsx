@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Policy from '../components/Policy';
-import { axiosDB } from '../api/axios';
+import { axiosDB } from '../api/axiosDB';
 import { useLoading } from '../contexts/LoadingContext';
 
 const Page = () => {

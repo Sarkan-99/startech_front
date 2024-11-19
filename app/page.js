@@ -34,7 +34,7 @@ const page = () => {
             <div className="text-center grid">
                 <form>
                     <div>
-                    <Link href="https://backend.competence-info.com/auth/google" passHref>  
+                    <Link href="http://127.0.0.1:8000/auth/google" passHref>  
                         <Button outlined severity="secondary">
                             <div className="flex justify-center items-center">
                             <Image src="/Google-logo.png" alt="" className="mr-3" width={26} height={25}></Image>

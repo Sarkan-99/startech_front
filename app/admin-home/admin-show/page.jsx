@@ -6,7 +6,7 @@ import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import React, { useEffect, useState, useRef } from 'react';
-import { axiosDB } from '../../api/axios';
+import { axiosDB } from '../../api/axiosDB';
 import { useLoading } from '../../contexts/LoadingContext';
 import Link from 'next/link';
 
@@ -84,10 +84,7 @@ const Page = () => {
                 <p className="m-0">{selectedComment}</p>
             </Dialog>
             <Link href='/admin-home'>
-                <Button label="fermer" severity="secondary" icon="pi pi-times" iconPos="right" />
-            </Link>
-            <Link href='/admin-home'>
-                <Button label="Export" severity="secondary" icon="pi pi-times" iconPos="right" />
+                <Button label="fermer" severity="danger" icon="pi pi-times"  />
             </Link>
         </div>
     );

@@ -29,7 +29,7 @@ const Policy = ({ setValidation }) => {
                 {/* Title */}
                 <div className="sticky top-0 z-10 bg-gray-100">
                     <p className="p-5 pl-6 sm:pl-10 m-0 font-semibold text-lg sm:text-xl" style={{ borderBottom: '1px solid #d1d5db' }}>
-                        Déclaration de confidentialité et Prévenir les conflits d’intérêts
+                        Déclaration de confidentialité et prévention de conflits d’intérêts
                     </p>
                 </div>
                 
@@ -60,7 +60,7 @@ const Policy = ({ setValidation }) => {
 
                     {/* Accept Button */}
                     <div className="w-full flex justify-end mt-4 mr-6 sm:mr-8">
-                        <Button label="J'accepte" severity="primary" disabled={!accepted} onClick={validate} />
+                        <Button label="Suivant" severity="primary" disabled={!accepted} onClick={validate} />
                     </div>
                 </div>
             </Card>

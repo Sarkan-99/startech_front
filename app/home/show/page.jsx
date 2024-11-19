@@ -8,10 +8,11 @@ import { MyVideo } from '../../components/MyVideo';
 import { Note } from '../../components/Note';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { axiosDB } from '../../api/axios';
+import { axiosDB } from '../../api/axiosDB';
 import { useLoading } from '../../contexts/LoadingContext';
 
 export default function Test() {
+    const [ x, setX] = useState(false);
     const { setLoading } = useLoading();
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -69,14 +70,17 @@ export default function Test() {
 
     },[searchParams, setLoading]);
 
-    const handleValuesChange = (values) => {
-        setValiderDisabled(values.includes(null));
+    const handleValuesChange1 = (values) => {
         if (!values.includes(null)) {
             [setQualite, setInovation, setPartinence, setEffort, setEnv, setComment].forEach((setter, i) =>
                 setter(values[i])
             );
         }
     };
+    const handleValuesChange2 = (values) => {
+        setValiderDisabled(values.includes(null));
+    };
+
   
     const validate = async () => {
         try {
@@ -102,7 +106,7 @@ export default function Test() {
             case 0: return <Info projet={project} />;
             case 1: return <PdfViewer src={pdf} />;
             case 2: return project.url_video == '' ? <span className='flex justify-center p-32'>Video non disponible</span> : <MyVideo src = {project.url_video}/>;
-            case 3: return <Note notes={notes} onValuesChange={handleValuesChange} />;
+            case 3: return <Note notes={notes} onValuesChange1={handleValuesChange1} onValuesChange2={handleValuesChange2} />;
             default: return null;
         }
     };

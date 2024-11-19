@@ -5,7 +5,7 @@ import React, { Suspense, useEffect, useRef, useState } from 'react';
 import 'primeicons/primeicons.css';
 import { Button } from 'primereact/button';
 import { OverlayPanel } from 'primereact/overlaypanel';
-import { axiosDB } from '../api/axios';
+import { axiosDB } from '../api/axiosDB';
 import { useRouter } from 'next/navigation';
 import { Image } from 'primereact/image';
 import { Divider } from 'primereact/divider';

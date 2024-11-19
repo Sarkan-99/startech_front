@@ -5,10 +5,11 @@ import React, { Suspense, useEffect, useRef, useState } from 'react';
 import 'primeicons/primeicons.css';
 import { Button } from 'primereact/button';
 import { OverlayPanel } from 'primereact/overlaypanel';
-import { axiosDB } from '../api/axios';
+import { axiosDB } from '../api/axiosDB';
 import { useRouter } from 'next/navigation';
 import { Image } from 'primereact/image';
 import { Divider } from 'primereact/divider';
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 const MainPage = ({ children }) => {
   const op = useRef(null);
@@ -80,7 +81,7 @@ const MainPage = ({ children }) => {
       >
         <div className="card-container w-11/12 bg-white rounded shadow-md p-4">
           <div className="w-full">
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<div><ProgressSpinner style={{width: '50px', height: '50px', color: 'red'}} strokeWidth="4.5" fill="var(--surface-ground)" animationDuration=".8"/></div>}>
               {children}
             </Suspense>
           </div>
